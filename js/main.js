@@ -1,6 +1,7 @@
 (function() {
   $(document).ready(function() {
     var mathHEiCont;
+    console.log('');
     mathHEiCont = function() {
       var fh, hh, wh, сh;
       hh = $('header').height();

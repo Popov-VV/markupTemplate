@@ -11,6 +11,8 @@ coffee = require 'gulp-coffee'
 uglify = require 'gulp-uglify'
 clean = require 'gulp-clean'     # delete file
 
+imagemin = require 'gulp-imagemin'
+
 
 gulp.task 'connect', ->
   connect.server
@@ -40,10 +42,17 @@ gulp.task 'update', ->
   gulp.src '.'
     .pipe do connect.reload
 
+gulp.task 'images', ->
+gulp.src('resources/assets/images/**/*')
+  .pipe(imagemin())
+  .pipe gulp.dest('public/images/')
+
+
+
 gulp.task 'watch', ->
   gulp.watch 'css/sass/**/*.sass', ['sass']
   gulp.watch 'js/coffee/**/*.coffee', ['coffee']
-  gulp.watch '*', ['update']
+  gulp.watch 'js/*', ['update']
 
 
 gulp.task 'default', ['sass', 'coffee', 'watch', 'connect']

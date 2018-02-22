@@ -1,6 +1,5 @@
 $(document).ready ->
-
-
+  console.log ''
 # ------  Footer Bottom
   mathHEiCont = () ->
     hh = $('header').height() # высота header
