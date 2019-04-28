@@ -8,6 +8,7 @@ prefix = require 'gulp-autoprefixer'
 sourcemaps = require 'gulp-sourcemaps'
 concat = require 'gulp-concat'
 coffee = require 'gulp-coffee'
+pug = require 'gulp-pug'
 uglify = require 'gulp-uglify'
 clean = require 'gulp-clean'     # delete file
 
@@ -18,7 +19,15 @@ gulp.task 'connect', ->
   connect.server
     port: 4444
     livereload: on
-    root: '.'
+
+
+gulp.task 'template', ->
+  gulp.src('template/*.pug')
+    .pipe pug({
+      pretty: true
+    })
+    .pipe gulp.dest '.'
+    .pipe do connect.reload
 
 gulp.task 'sass', ->
   gulp.src 'css/sass/main.sass'
@@ -50,9 +59,10 @@ gulp.src('resources/assets/images/**/*')
 
 
 gulp.task 'watch', ->
+  gulp.watch 'template/**/*.pug', ['template']
   gulp.watch 'css/sass/**/*.sass', ['sass']
   gulp.watch 'js/coffee/**/*.coffee', ['coffee']
   gulp.watch 'js/*', ['update']
 
 
-gulp.task 'default', ['sass', 'coffee', 'watch', 'connect']
+gulp.task 'default', ['template', 'sass', 'coffee', 'watch', 'connect']
