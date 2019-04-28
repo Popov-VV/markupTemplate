@@ -1,6 +1,6 @@
-# clearSite
+# Markup Template
 
-My template for a new site!
+My template for markup page whith livereloading!
 
 For begin use next command on you terminal:
 
