@@ -1,9 +1,8 @@
 {
-  "name": "newApp",
+  "name": "new_app",
   "description": "Prepare before at start a new project",
   "main": "",
   "license": "MIT",
-  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",

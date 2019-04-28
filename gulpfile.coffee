@@ -19,32 +19,33 @@ gulp.task 'connect', ->
   connect.server
     port: 4444
     livereload: on
+    root: 'app'
 
 
 gulp.task 'template', ->
-  gulp.src('template/*.pug')
+  gulp.src('assets/template/*.pug')
     .pipe pug({
       pretty: true
     })
-    .pipe gulp.dest '.'
+    .pipe gulp.dest './app'
     .pipe do connect.reload
 
 gulp.task 'sass', ->
-  gulp.src 'css/sass/main.sass'
+  gulp.src 'assets/sass/main.sass'
     .pipe sourcemaps.init()
     .pipe sass(outputStyle: 'compressed')
 #     .pipe sourcemaps.write '../public/css/map'
     .pipe prefix('last 3 version')   # 'last 15 version'
     .pipe concat 'main.css'
-    .pipe gulp.dest 'css'
+    .pipe gulp.dest './app/css'
     .pipe do connect.reload
 
 
 gulp.task 'coffee', ->
-  gulp.src 'js/coffee/**/*.coffee'
+  gulp.src 'assets/coffee/**/*.coffee'
     .pipe do coffee
     .pipe concat 'main.js'
-    .pipe gulp.dest 'js'
+    .pipe gulp.dest './app/js'
     .pipe do connect.reload
 
 gulp.task 'update', ->
@@ -59,10 +60,10 @@ gulp.src('resources/assets/images/**/*')
 
 
 gulp.task 'watch', ->
-  gulp.watch 'template/**/*.pug', ['template']
-  gulp.watch 'css/sass/**/*.sass', ['sass']
-  gulp.watch 'js/coffee/**/*.coffee', ['coffee']
-  gulp.watch 'js/*', ['update']
+  gulp.watch 'assets/template/**/*.pug', ['template']
+  gulp.watch 'assets/sass/**/*.sass', ['sass']
+  gulp.watch 'assets/coffee/**/*.coffee', ['coffee']
+  # gulp.watch 'js/*', ['update']
 
 
 gulp.task 'default', ['template', 'sass', 'coffee', 'watch', 'connect']
