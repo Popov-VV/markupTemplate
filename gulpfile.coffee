@@ -1,8 +1,7 @@
-# npm i gulp coffee-script gulp-connect gulp-clean gulp-coffee gulp-sass gulp-autoprefixer gulp-sourcemaps gulp-concat  gulp-uglify gulp-requirejs --save-dev
-
 gulp = require 'gulp'
 connect = require 'gulp-connect'
 
+colors = require 'colors/safe'
 sass = require 'gulp-sass'
 prefix = require 'gulp-autoprefixer'
 sourcemaps = require 'gulp-sourcemaps'
@@ -10,7 +9,7 @@ concat = require 'gulp-concat'
 coffee = require 'gulp-coffee'
 pug = require 'gulp-pug'
 uglify = require 'gulp-uglify'
-clean = require 'gulp-clean'     # delete file
+clean = require 'gulp-clean'
 
 imagemin = require 'gulp-imagemin'
 
@@ -27,6 +26,9 @@ gulp.task 'template', ->
     .pipe pug({
       pretty: true
     })
+    .on 'error', (err) ->
+      console.log colors.red  err.toString()
+      this.emit 'end'
     .pipe gulp.dest './app'
     .pipe do connect.reload
 
@@ -34,7 +36,10 @@ gulp.task 'sass', ->
   gulp.src 'assets/sass/main.sass'
     .pipe sourcemaps.init()
     .pipe sass(outputStyle: 'compressed')
-#     .pipe sourcemaps.write '../public/css/map'
+    .on 'error', (err) ->
+      console.log colors.red err.toString()
+      this.emit 'end'
+    # .pipe sourcemaps.write '../public/css/map'
     .pipe prefix('last 3 version')   # 'last 15 version'
     .pipe concat 'main.css'
     .pipe gulp.dest './app/css'
@@ -44,6 +49,9 @@ gulp.task 'sass', ->
 gulp.task 'coffee', ->
   gulp.src 'assets/coffee/**/*.coffee'
     .pipe do coffee
+    .on 'error', (err) ->
+      console.log colors.red err.toString()
+      this.emit 'end'
     .pipe concat 'main.js'
     .pipe gulp.dest './app/js'
     .pipe do connect.reload
