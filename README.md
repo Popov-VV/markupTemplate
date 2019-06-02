@@ -8,7 +8,7 @@ For begin use next command on you terminal:
 - bower i --allow-root
 - npm i
 
-- gulp --require coffee-script/register
+- npm run dev
 
 Open you browser http://localhost:4444
 

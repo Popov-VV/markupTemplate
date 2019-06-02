@@ -58,7 +58,6 @@ gulp.src('resources/assets/images/**/*')
   .pipe gulp.dest('public/images/')
 
 
-
 gulp.task 'watch', ->
   gulp.watch 'assets/template/**/*.pug', ['template']
   gulp.watch 'assets/sass/**/*.sass', ['sass']
