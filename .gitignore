@@ -1,5 +1,8 @@
 node_modules
 bower_components
 app
+email/*/resultEmail/
 .idea
 .vscode
+npm-debug.log
+

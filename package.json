@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "dev": "gulp --require coffee-script/register"
+    "dev": "gulp --require coffee-script/register",
+    "email": "gulp email --require coffee-script/register --name"
   },
   "author": "",
   "license": "ISC",
@@ -18,11 +19,13 @@
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
     "gulp-imagemin": "^4.1.0",
+    "gulp-inline-css": "^3.3.2",
     "gulp-minify": "^3.1.0",
     "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
     "gulp-requirejs": "^1.0.0-rc2",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
-    "gulp-uglify": "^3.0.0"
+    "yargs": "^13.2.4"
   }
 }
