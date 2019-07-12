@@ -17,6 +17,7 @@ minify = require 'gulp-minify'
 pug = require 'gulp-pug'
 imagemin = require 'gulp-imagemin'
 
+nameEmailTemplate = 'bookingEmail'
 
 # получение названия шаблона email
 if argv.name and argv.name isnt true then nameEmailTemplate = argv.name else nameEmailTemplate = 'example'
