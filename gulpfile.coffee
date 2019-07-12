@@ -7,6 +7,7 @@ prefix = require 'gulp-autoprefixer'
 sourcemaps = require 'gulp-sourcemaps'
 concat = require 'gulp-concat'
 coffee = require 'gulp-coffee'
+minify = require 'gulp-minify'
 pug = require 'gulp-pug'
 uglify = require 'gulp-uglify'
 clean = require 'gulp-clean'
@@ -35,7 +36,9 @@ gulp.task 'template', ->
 gulp.task 'sass', ->
   gulp.src 'assets/sass/main.sass'
     .pipe sourcemaps.init()
-    .pipe sass(outputStyle: 'compressed')
+    .pipe sass(
+      outputStyle: 'compressed'
+    )
     .on 'error', (err) ->
       console.log colors.red err.toString()
       this.emit 'end'
@@ -45,7 +48,6 @@ gulp.task 'sass', ->
     .pipe gulp.dest './app/css'
     .pipe do connect.reload
 
-
 gulp.task 'coffee', ->
   gulp.src 'assets/coffee/**/*.coffee'
     .pipe do coffee
@@ -53,6 +55,7 @@ gulp.task 'coffee', ->
       console.log colors.red err.toString()
       this.emit 'end'
     .pipe concat 'main.js'
+    .pipe minify()
     .pipe gulp.dest './app/js'
     .pipe do connect.reload
 
