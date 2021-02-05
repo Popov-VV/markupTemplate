@@ -4,7 +4,6 @@ My template for markup page and email whith livereloading!
 
 For begin use next command on you terminal:
 
-- git clone https://github.com/Axeres/clearSite
 - bower i --allow-root
 - npm i
   
